@@ -1,0 +1,20 @@
+{
+    "asset": "a6b281478996c61448413d51121abd8d",
+    "fileName": "019b1e22-cd73-7af3-9d18-4eb6c665949d.png",
+    "prompt": "Mesh for a bed",
+    "negativePrompt": "",
+    "model": "5b5b2af1-6ea4-4266-b087-cc9f3bf4f450",
+    "modelName": "Flux.1 Dev",
+    "customSeed": -1,
+    "w3CTraceId": "915a51d6c05b8dc65de0be783329769b",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}

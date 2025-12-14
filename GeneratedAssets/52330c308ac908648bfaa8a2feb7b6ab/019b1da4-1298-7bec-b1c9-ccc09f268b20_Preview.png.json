@@ -1,0 +1,11 @@
+{
+    "asset": "52330c308ac908648bfaa8a2feb7b6ab",
+    "fileName": "019b1da4-1298-7bec-b1c9-ccc09f268b20_Preview.png",
+    "prompt": "3D material for a little house with a living room, including a sofa, TV, and a small table with a bowl of fruits.",
+    "negativePrompt": "",
+    "model": "44ec3749-963a-44b1-aa54-dc19f6ed8ab2",
+    "modelName": "Unity Texture2D",
+    "customSeed": 1444811870,
+    "w3CTraceId": "c667c2fca4bb4ffd20998796e478a649",
+    "refinementMode": "Generation"
+}

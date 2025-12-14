@@ -1,0 +1,20 @@
+{
+    "asset": "b08abc2bbb2c9af4bb56d3b4943c188b",
+    "fileName": "019b1e29-db34-7f25-aa8f-773161c2e9ca.png",
+    "prompt": "please create a texture like this",
+    "negativePrompt": "",
+    "model": "5b5b2af1-6ea4-4266-b087-cc9f3bf4f450",
+    "modelName": "Flux.1 Dev",
+    "customSeed": -1,
+    "w3CTraceId": "73de960c9c0e24d71fc6d33bb9ead6a5",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}

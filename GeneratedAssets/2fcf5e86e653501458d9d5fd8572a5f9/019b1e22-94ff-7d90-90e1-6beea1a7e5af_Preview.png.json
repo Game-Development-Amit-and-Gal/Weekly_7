@@ -1,0 +1,11 @@
+{
+    "asset": "2fcf5e86e653501458d9d5fd8572a5f9",
+    "fileName": "019b1e22-94ff-7d90-90e1-6beea1a7e5af_Preview.png",
+    "prompt": "Material for a bed",
+    "negativePrompt": "",
+    "model": "44ec3749-963a-44b1-aa54-dc19f6ed8ab2",
+    "modelName": "Unity Texture2D",
+    "customSeed": 482377731,
+    "w3CTraceId": "8faa5f279a33b3837e58bd0a1c68da3f",
+    "refinementMode": "Generation"
+}
