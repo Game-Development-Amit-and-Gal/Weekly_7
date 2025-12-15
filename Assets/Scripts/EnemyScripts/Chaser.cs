@@ -16,7 +16,7 @@ public class Chaser : MonoBehaviour
 
     [Header("These fields are for display only")]
     [SerializeField] private Vector3 playerPosition;
-
+    [SerializeField] public Transform playerTransform;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
 
@@ -28,6 +28,10 @@ public class Chaser : MonoBehaviour
 
     private void Update()
     {
+        if (playerPosition == null || !playerTransform)
+        {
+            return;
+        }
         playerPosition = player.transform.position;
         FacePlayer();
         navMeshAgent.SetDestination(playerPosition);
@@ -43,15 +47,16 @@ public class Chaser : MonoBehaviour
 
     internal Vector3 TargetObjectPosition()
     {
-        return player.transform.position;
+        if (player == null)
+        {
+            return transform.position;
+        }
+        else
+        {
+            return player.transform.position;
+        }
     }
 
-    private void FaceDirection()
-    {
-        Vector3 direction = (navMeshAgent.destination - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        // transform.rotation = lookRotation;
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
-    }
+
 
 }

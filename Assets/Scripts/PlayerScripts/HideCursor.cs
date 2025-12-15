@@ -10,7 +10,7 @@ public class CursorHider : MonoBehaviour
     [SerializeField] InputAction toggleCursorAction = new InputAction(type: InputActionType.Button);
     void OnEnable() { toggleCursorAction.Enable(); }
     void OnDisable() { toggleCursorAction.Disable(); }
-   
+
     void OnValidate()
     {
         // Provide default bindings for the input actions: https://gamedev.stackexchange.com/a/205345/18261

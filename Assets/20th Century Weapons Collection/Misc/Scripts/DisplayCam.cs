@@ -25,9 +25,9 @@ public class DisplayCam : MonoBehaviour
     void Update()
     {
         _accum += Time.deltaTime * _speed;
-        if(_accum > Mathf.PI)
+        if (_accum > Mathf.PI)
         {
-            _accum -= Mathf.PI*2;
+            _accum -= Mathf.PI * 2;
         }
         transform.position = _targetTransform.position + new Vector3(Mathf.Cos(_accum) * _radius, _height, Mathf.Sin(_accum) * _radius);
         transform.LookAt(_targetTransform);

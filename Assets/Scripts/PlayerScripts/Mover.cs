@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,9 @@ public class SimpleKeyboardMover : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float crouchSpeed = 2.5f;
+    [SerializeField] private float sprintSpeed = 2.5f;
+    private float sprintTime = 4f;
+    private float countDown = 4f;
 
     [Header("Jump & Gravity")]
     [SerializeField] private float gravity = -9.81f;
@@ -22,6 +26,7 @@ public class SimpleKeyboardMover : MonoBehaviour
         new InputAction(type: InputActionType.Value);
 
     private CharacterController controller;
+    [SerializeField] private GameObject player;
 
     // verticalVelocity.y is kept between frames
     private Vector3 verticalVelocity;
@@ -44,7 +49,8 @@ public class SimpleKeyboardMover : MonoBehaviour
                 .With("Up", "<Keyboard>/w")
                 .With("Down", "<Keyboard>/s")
                 .With("Left", "<Keyboard>/a")
-                .With("Right", "<Keyboard>/d");
+                .With("Right", "<Keyboard>/d")
+                .With("Sprint", "<Keyboard>/shift");
         }
     }
 
@@ -58,6 +64,7 @@ public class SimpleKeyboardMover : MonoBehaviour
 
     void Update()
     {
+        if (player.IsDestroyed()) return;
         // ---------- 1) Horizontal movement ----------
         Vector2 input = moveAction.ReadValue<Vector2>();
         Vector3 horizontal = new Vector3(input.x, 0f, input.y);
@@ -67,7 +74,7 @@ public class SimpleKeyboardMover : MonoBehaviour
         if (horizontal.sqrMagnitude > minMag)       // prevent super-fast diagonals
             horizontal.Normalize();
 
-        horizontal = transform.TransformDirection(horizontal) * currentSpeed;
+
 
         // ---------- 2) Read keys ----------
         bool jumpPressed =
@@ -98,6 +105,17 @@ public class SimpleKeyboardMover : MonoBehaviour
                 isCrouching = !isCrouching;
                 ApplyCrouchSettings();
             }
+            if (CanSprint() && Keyboard.current.shiftKey.isPressed)
+            {
+                Debug.Log("ShiftPressed sprinting!");
+                horizontal.z = sprintSpeed;
+                countDown -= Time.deltaTime;
+                if (countDown <= 0)
+                {
+                    countDown = sprintTime;
+                    horizontal.z = walkSpeed;
+                }
+            }
         }
         else
         {
@@ -105,6 +123,7 @@ public class SimpleKeyboardMover : MonoBehaviour
             verticalVelocity.y += gravity * Time.deltaTime;
         }
 
+        horizontal = transform.TransformDirection(horizontal) * currentSpeed;
         // ---------- 4) Combine & Move ----------
         Vector3 finalVelocity = horizontal;
         finalVelocity.y = verticalVelocity.y;
@@ -132,5 +151,17 @@ public class SimpleKeyboardMover : MonoBehaviour
             controller.center = defaultCenter;
             currentSpeed = walkSpeed;
         }
+    }
+
+    private bool CanSprint()
+    {
+        bool notCrouching = !isCrouching;
+
+        if ((notCrouching))
+        {
+            return true;
+        }
+
+        return false;
     }
 }

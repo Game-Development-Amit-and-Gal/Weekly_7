@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 /**
@@ -11,10 +12,11 @@ public class EnemyControllerStateMachine : StateMachine
     [SerializeField] float radiusToWatch = 5f;
     [SerializeField] float probabilityToRotate = 0.2f;
     [SerializeField] float probabilityToStopRotating = 0.2f;
-
+    [SerializeField] private GameObject player;
     private Chaser chaser;
     private Patroller patroller;
     private Rotator rotator;
+
 
     private float DistanceToTarget()
     {
@@ -30,13 +32,14 @@ public class EnemyControllerStateMachine : StateMachine
         .AddState(patroller)     // This would be the first active state.
         .AddState(chaser)
         .AddState(rotator)
-        .AddTransition(patroller, () => DistanceToTarget() <= radiusToWatch, chaser)
-        .AddTransition(rotator, () => DistanceToTarget() <= radiusToWatch, chaser)
-        .AddTransition(chaser, () => DistanceToTarget() > radiusToWatch, patroller)
+        .AddTransition(patroller, () => !player.IsDestroyed() && DistanceToTarget() <= radiusToWatch, chaser)
+        .AddTransition(rotator, () => !player.IsDestroyed() && DistanceToTarget() <= radiusToWatch, chaser)
+        .AddTransition(chaser, () => player.IsDestroyed() || DistanceToTarget() > radiusToWatch, patroller)
         .AddTransition(rotator, () => Random.Range(0f, 1f) < probabilityToStopRotating * Time.deltaTime, patroller)
         .AddTransition(patroller, () => Random.Range(0f, 1f) < probabilityToRotate * Time.deltaTime, rotator)
         ;
     }
+
 
 
 

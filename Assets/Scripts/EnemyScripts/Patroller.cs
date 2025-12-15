@@ -39,7 +39,7 @@ public class Patroller : MonoBehaviour
     }
 
     private void SelectNewTarget()
-    {   
+    {
         int randomIndex = Random.Range(0, allTargets.Length);
         currentTarget = allTargets[randomIndex];
         Debug.Log("New target: " + currentTarget.name);
